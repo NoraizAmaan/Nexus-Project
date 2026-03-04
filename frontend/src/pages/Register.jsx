@@ -158,7 +158,7 @@ export default function Register() {
 
         <button
           type="button"
-          onClick={() => window.location.href = "http://localhost:5000/api/auth/google"}
+          onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/auth/google`}
           className="w-full flex items-center justify-center gap-3 py-2.5 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-700 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-slate-600 transition-colors"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -184,7 +184,7 @@ export default function Register() {
 
         <button
           type="button"
-          onClick={() => window.location.href = "http://localhost:5000/api/auth/microsoft"}
+          onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/auth/microsoft`}
           className="w-full flex items-center justify-center gap-3 py-2.5 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-700 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-slate-600 transition-colors"
         >
           <svg className="w-5 h-5" viewBox="0 0 23 23">
