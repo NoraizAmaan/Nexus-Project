@@ -1,5 +1,5 @@
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -245,9 +245,9 @@ export default function Login() {
         </div>
 
         <div className="text-center mt-2">
-          <a href="/help?tab=login-issues" className="text-xs text-gray-400 hover:text-gray-600">
+          <Link to="/help?tab=login-issues" className="text-xs text-gray-400 hover:text-gray-600">
             {t('auth.needHelpLogin')}
-          </a>
+          </Link>
         </div>
       </form >
     </div >

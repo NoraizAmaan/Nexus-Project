@@ -1,5 +1,5 @@
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -218,9 +218,9 @@ export default function Register() {
         </div>
 
         <div className="text-center mt-2">
-          <a href="/help" className="text-xs text-gray-400 hover:text-gray-600">
+          <Link to="/help" className="text-xs text-gray-400 hover:text-gray-600">
             {t('common.needHelp')}
-          </a>
+          </Link>
         </div>
       </form>
     </div>

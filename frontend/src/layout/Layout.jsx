@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
@@ -40,11 +40,11 @@ export default function Layout() {
           <div>
             <h3 className="font-bold mb-2">{t('common.quickLinks')}</h3>
             <ul className="text-gray-400 text-sm space-y-1">
-              <li><a href="/" className="hover:text-white">{t('common.dashboard')}</a></li>
-              <li><a href="/what-we-do" className="hover:text-white">{t('common.whatWeDo')}</a></li>
-              <li><a href="/users" className="hover:text-white">{t('common.users')}</a></li>
-              <li><a href="/help" className="hover:text-white">{t('common.helpCenter')}</a></li>
-              <li><a href="/profile" className="hover:text-white">{t('common.profile')}</a></li>
+              <li><Link to="/" className="hover:text-white">{t('common.dashboard')}</Link></li>
+              <li><Link to="/what-we-do" className="hover:text-white">{t('common.whatWeDo')}</Link></li>
+              <li><Link to="/users" className="hover:text-white">{t('common.users')}</Link></li>
+              <li><Link to="/help" className="hover:text-white">{t('common.helpCenter')}</Link></li>
+              <li><Link to="/profile" className="hover:text-white">{t('common.profile')}</Link></li>
             </ul>
           </div>
 
@@ -67,15 +67,15 @@ export default function Layout() {
         <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-800 text-white text-xs py-1.5 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl border border-slate-700">
           {t('common.needHelp')}
         </div>
-        <a
-          href="/help"
+        <Link
+          to="/help"
           className="w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-indigo-700 hover:scale-110 transition-all duration-300 ring-4 ring-white dark:ring-slate-800 group-hover:rotate-12"
           aria-label={t('common.helpCenter')}
         >
           <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-        </a>
+        </Link>
       </div>
     </>
   );

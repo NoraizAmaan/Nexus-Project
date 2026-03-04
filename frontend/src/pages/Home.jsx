@@ -194,7 +194,7 @@ export default function Home() {
               </Link>
 
               <Link
-                to="/what-we-do" target="_blank"
+                to="/what-we-do"
                 className="px-8 py-3 rounded-full font-semibold text-white border border-white/30 hover:bg-white/10 transition backdrop-blur-sm"
               >
                 {t('home.learnMore')}
