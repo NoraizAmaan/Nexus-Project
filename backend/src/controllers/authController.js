@@ -9,6 +9,12 @@ const generateToken = (id) => {
     });
 };
 
+const getFrontendUrl = () => {
+    let url = process.env.FRONTEND_URL || 'http://localhost:5173';
+    // Strip trailing slash if present
+    return url.endsWith('/') ? url.slice(0, -1) : url;
+};
+
 // @desc    Register new user
 // @route   POST /api/auth/register
 // @access  Public
@@ -101,7 +107,7 @@ const forgotPassword = async (req, res) => {
     await user.save();
 
     // Create reset URL
-    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password/${resetToken}`;
+    const resetUrl = `${getFrontendUrl()}/reset-password/${resetToken}`;
 
     const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please visit: \n\n ${resetUrl}`;
 
@@ -248,7 +254,7 @@ const updateUserProfile = async (req, res) => {
 // @access  Public
 const googleAuthCallback = async (req, res) => {
     if (!req.user) {
-        res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=auth_failed`);
+        res.redirect(`${getFrontendUrl()}/login?error=auth_failed`);
         return;
     }
 
@@ -259,7 +265,7 @@ const googleAuthCallback = async (req, res) => {
     const token = generateToken(req.user._id);
 
     // Redirect to frontend with token
-    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?token=${token}`);
+    res.redirect(`${getFrontendUrl()}/login?token=${token}`);
 };
 
 export { registerUser, loginUser, getUserProfile, forgotPassword, resetPassword, updateUserProfile, googleAuthCallback };

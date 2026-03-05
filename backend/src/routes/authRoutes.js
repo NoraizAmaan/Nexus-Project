@@ -13,6 +13,11 @@ import {
 import { protect } from "../middleware/authMiddleware.js";
 import passport from "passport";
 
+const getFrontendUrl = () => {
+    let url = process.env.FRONTEND_URL || 'http://localhost:5173';
+    return url.endsWith('/') ? url.slice(0, -1) : url;
+};
+
 const router = express.Router();
 const upload = multer({ storage: profileStorage });
 
@@ -27,7 +32,7 @@ router.put("/reset-password/:token", resetPassword);
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 router.get(
     "/google/callback",
-    passport.authenticate("google", { session: false, failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=google_failed` }),
+    passport.authenticate("google", { session: false, failureRedirect: `${getFrontendUrl()}/login?error=google_failed` }),
     googleAuthCallback
 );
 
@@ -35,7 +40,7 @@ router.get(
 router.get("/microsoft", passport.authenticate("microsoft", { scope: ["user.read"] }));
 router.get(
     "/microsoft/callback",
-    passport.authenticate("microsoft", { session: false, failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=microsoft_failed` }),
+    passport.authenticate("microsoft", { session: false, failureRedirect: `${getFrontendUrl()}/login?error=microsoft_failed` }),
     googleAuthCallback
 );
 
