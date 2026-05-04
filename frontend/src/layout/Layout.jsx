@@ -2,11 +2,14 @@ import { Outlet, useLocation, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import ChatWidget from "../components/ChatWidget";
+import { ChatBubbleOvalLeftEllipsisIcon, QuestionMarkCircleIcon, ChatBubbleLeftRightIcon, SparklesIcon } from "@heroicons/react/24/outline";
 
 export default function Layout() {
   const { t } = useTranslation();
   const location = useLocation();
   const [isHiding, setIsHiding] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const isFullWidthPage = location.pathname === "/" || location.pathname === "/what-we-do";
 
   useEffect(() => {
@@ -59,24 +62,45 @@ export default function Layout() {
         </p>
       </footer>
 
-      {/* Floating Help Button with Peek-a-boo animation */}
+      {/* Floating Action Menu (Speed Dial) */}
       <div
-        className={`fixed bottom-0 right-0 p-6 z-50 group transition-all duration-500 transform ${isHiding ? "translate-x-1/3 translate-y-1/3 opacity-80" : "translate-x-0 translate-y-0 opacity-100"
-          } hover:translate-x-0 hover:translate-y-0 hover:opacity-100`}
+        className={`fixed bottom-0 right-0 p-6 z-50 transition-all duration-500 transform ${
+          isHiding && !isChatOpen ? "translate-x-1/3 translate-y-1/3 opacity-80" : "translate-x-0 translate-y-0 opacity-100"
+        } hover:translate-x-0 hover:translate-y-0 hover:opacity-100`}
       >
-        <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-800 text-white text-xs py-1.5 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl border border-slate-700">
-          {t('common.needHelp')}
+        <div className="relative group flex flex-col items-center">
+          
+          {/* Secondary Action: Chatbot */}
+          <button
+            onClick={() => setIsChatOpen(!isChatOpen)}
+            className="absolute bottom-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-4 group-hover:translate-y-0 transition-all duration-300 w-12 h-12 bg-indigo-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 z-10"
+            aria-label="Open Chatbot"
+            title={t('chat.title')}
+          >
+            <SparklesIcon className="w-6 h-6" />
+          </button>
+
+          {/* Secondary Action: Help Center */}
+          <Link
+            to="/help"
+            className="absolute bottom-36 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75 w-12 h-12 bg-white text-indigo-600 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 z-10 border border-gray-200"
+            aria-label={t('common.helpCenter')}
+            title={t('common.helpCenter')}
+          >
+            <QuestionMarkCircleIcon className="w-6 h-6" />
+          </Link>
+
+          {/* Primary Trigger Button */}
+          <button
+            className="w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-indigo-700 transition-all duration-300 ring-4 ring-white dark:ring-slate-800 z-20 group-hover:scale-110"
+            aria-label="Help Menu"
+          >
+            <ChatBubbleLeftRightIcon className="w-7 h-7" />
+          </button>
         </div>
-        <Link
-          to="/help"
-          className="w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-indigo-700 hover:scale-110 transition-all duration-300 ring-4 ring-white dark:ring-slate-800 group-hover:rotate-12"
-          aria-label={t('common.helpCenter')}
-        >
-          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </Link>
       </div>
+
+      <ChatWidget isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </>
   );
 }

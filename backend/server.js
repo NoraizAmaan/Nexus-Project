@@ -11,6 +11,7 @@ import phaseRoutes from "./src/routes/phaseRoutes.js";
 import projectRoutes from "./src/routes/projectRoutes.js";
 import documentRoutes from "./src/routes/documentRoutes.js";
 import activityRoutes from "./src/routes/activityRoutes.js";
+import chatRoutes from "./src/routes/chatRoutes.js";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/api/phases", phaseRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/documents", documentRoutes);
 app.use("/api/activities", activityRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.get("/", (req, res) => {
     res.send("API is running...");

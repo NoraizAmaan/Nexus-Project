@@ -1,0 +1,25 @@
+{
+  "rules": [
+    {
+      "id": "16b48df1-51f4-4b09-9fd2-7d37d4163f87",
+      "tool": "replaceLineRange",
+      "pattern": "frontend/src/pages/**",
+      "decision": "allow",
+      "createdAt": "2026-04-16T07:41:45.107Z"
+    },
+    {
+      "id": "b4b83566-74ef-4d3f-9c27-b5ac7f4905f5",
+      "tool": "editFile",
+      "pattern": "frontend/src/pages/**",
+      "decision": "allow",
+      "createdAt": "2026-04-16T07:43:42.201Z"
+    },
+    {
+      "id": "b348fe1a-2cf8-460e-9180-cf28cebc4a6e",
+      "tool": "runCommand",
+      "pattern": "wc",
+      "decision": "allow",
+      "createdAt": "2026-04-16T07:44:43.617Z"
+    }
+  ]
+}

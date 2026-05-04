@@ -222,5 +222,14 @@
         "helpSystemDesc": "Never get stuck with our built-in support infrastructure. Access a detailed FAQ, follow troubleshooting guides for common issues, and reach out to our support team directly whenever you need assistance.",
         "joinUs": "Ready to optimize your workflow?",
         "getStarted": "Get Started Now"
+    },
+    "chat": {
+        "title": "Nexus Assistant",
+        "placeholder": "Type your message...",
+        "send": "Send",
+        "clear": "Clear Chat",
+        "error": "Oops! Something went wrong.",
+        "welcome": "Hi! I'm your Nexus Support Assistant. How can I help you today?",
+        "typing": "Assistant is typing..."
     }
 }

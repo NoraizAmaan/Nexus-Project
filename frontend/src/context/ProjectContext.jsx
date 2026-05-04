@@ -1,9 +1,11 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import api from "../services/api";
+import { useAuth } from "./AuthContext";
 
 const ProjectContext = createContext();
 
 export const ProjectProvider = ({ children, disableAutoFetch = false }) => {
+    const { user } = useAuth();
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState(null); // active project
     const [loading, setLoading] = useState(!disableAutoFetch);
@@ -30,10 +32,13 @@ export const ProjectProvider = ({ children, disableAutoFetch = false }) => {
     };
 
     useEffect(() => {
-        if (!disableAutoFetch) {
+        if (!disableAutoFetch && user) {
             fetchProjects();
+        } else if (!user) {
+            setProjects([]);
+            setProject(null);
         }
-    }, [disableAutoFetch]);
+    }, [disableAutoFetch, user]);
 
     // Effect to persist active project ID
     useEffect(() => {
